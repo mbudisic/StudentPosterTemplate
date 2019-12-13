@@ -1,39 +1,45 @@
 %% Adapted from `tikzposter-example.tex',
 
 %% Modify the size of the paper for the usual 4 ft x3 ft poster size
-\PassOptionsToPackage{paperwidth=48in,
-  paperheight=36in,
-  innermargin=1in,
-  textwidth=48in,
-  textheight=36in,
-  margin=0in,
-%  width=48in-4cm,
-%  height=36in-4cm,
+\PassOptionsToPackage{paperwidth=48in, paperheight=36in,
+  textwidth=48in, textheight=36in,
+  innermargin=1in, margin=.25in,
   centering}{geometry}
 
- \documentclass[25pt, landscape,blockverticalspace=0.5in, colspace=0.5in, subcolspace=0.33in]{tikzposter} %Default values for poster format options.
 
- \tikzposterlatexaffectionproofon %shows small comment on how the poster was made at bottom of poster
+\documentclass[25pt, landscape,blockverticalspace=0.5in, colspace=0.5in, subcolspace=0.33in]{tikzposter} %Default values for poster format options.
 
- % Command
- \newcommand{\bs}{\textbackslash}   % backslash
- \newcommand{\cmd}[1]{{\bf \color{red}#1}}   % highlights command
+%% sans-serif fonts
+\usepackage[scaled]{helvet}
+\renewcommand\familydefault{\sfdefault} 
+\usepackage[T1]{fontenc}
+\usepackage[helvet]{sfmath}
+\everymath={\sf}
+
+%% arbitrary positioning
+\usepackage[absolute,overlay]{textpos}
+
+\usepackage[backend=bibtex,citestyle=numeric-comp]{biblatex}
+\addbibresource{bibliography.bib} % bibliography file
+
+\tikzposterlatexaffectionproofoff % remove tikzposter logo
+
 
  % Title, Author, Institute
- \title{A most excellent research project}
- \author{First Author}
- \institute{Department of Mathematics, Clarkson University}
+\title{A most excellent research project}
+\author{First Author$^1$, Second Author$^2$}
+\institute{${}^1$ Clarkson, ${}^2$ Not Clarkson}
 
 
- % -- PREDEFINED THEMES ---------------------- %
+% -- PREDEFINED THEMES ---------------------- %
  % Choose LAYOUT:  Default, Basic, Rays, Simple, Envelope, Wave, Board, Autumn, Desert,
- \definecolorpalette{Clarkson}{
+ \usetheme{Autumn}
+
+ \definecolorpalette{Clarkson}{ % colors based on Clarkson visual identity guide
    \definecolor{colorOne}{HTML}{004E42}
    \definecolor{colorTwo}{HTML}{D7D2CB}   
    \definecolor{colorThree}{HTML}{FFCD00}
-}
-
- \usetheme{Autumn}
+ }
 \usecolorstyle[colorPalette=Clarkson]{Germany}
 
 
@@ -44,27 +50,65 @@
  \node[anchor=east] at (TP@title.east) {\includegraphics[height=2in]{logos/clarkson-logo.png} \hspace*{2in}};
 
 
-     \begin{columns}%blocks will be placed into columns
+ \begin{columns}%blocks will be placed into columns
 
-       \column{.45}
+       \column{.33}
 
        \block{Title}{
-         \coloredbox{Text}
+
+
+         Math:
+         \[
+           \int_0^t f(x(\tau))d\tau 
+         \]
+
+         We can also put a graph in and refer to it here: Fig.~\ref{fig:first}
+         \begin{tikzfigure}[This is a graph.]\label{fig:first}
+           \includegraphics[width=0.5\linewidth]{figs/graph}
+         \end{tikzfigure} 
+
        }
 
-       
 
-       \column{.50}
-       
-       
+       \column{.33}
+
+       \block{Methods}{
+         Something common.
+
+         \coloredbox{Important statement can be highlighted}
+       }
+
+     
        \begin{subcolumns}
-         \subcolumn{.45}
-         Something
          \subcolumn{.5}
-         Something else
+         \block{Type 1}{
+           Something cited from
+           \cite{Hill1894}
+         }
+         \subcolumn{.5}
+         \block{Type 2}{
+           Something else}
+
        \end{subcolumns}
 
+       \block{More}{
+         For more information, take a look at \texttt{tikzposter-example.tex} and \texttt{tikzposter-example.pdf} in this folder. 
+       }
+       \note[targetoffsetx=2in, angle=-45,targetoffsety=0in,connection]{Additionally, documentation for the poster class is in \url{https://ctan.org/pkg/tikzposter}.}
+
+
+       \column{.33}
+
+       \block{Results}{
+       }
+       
+       \block{References}{
+         \printbibliography[heading=none]
+       }
+
      \end{columns}
+
+
 
  \end{document}
 
