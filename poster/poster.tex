@@ -1,4 +1,5 @@
 %% Adapted from `tikzposter-example.tex',
+\RequirePackage{fixltx2e}
 
 %% Modify the size of the paper for the usual 4 ft x3 ft poster size
 \PassOptionsToPackage{paperwidth=48in, paperheight=36in,
@@ -38,6 +39,13 @@ allcolors=blue
 \usepackage{pgfplots}
 \pgfplotsset{compat=newest}
 
+\usepackage{wrapfig} % wrapping figures
+
+\usepackage{subcaption} % subfigures
+\usepackage{etoolbox}
+\AtBeginEnvironment{tikzfigure}{\captionsetup{type=figure}} % make subcaption work with tikzposter
+
+
 % choose one bibliography package:
 \usepackage[backend=bibtex,citestyle=numeric-comp]{biblatex}
 %\usepackage{amsrefs} % references
@@ -58,13 +66,13 @@ allcolors=blue
 
  % colors based on Clarkson visual identity guide
  % rotating colorOne/Two/Three and the countries below leads to various color themes
- \definecolorpalette{Clarkson}{ 
+ \definecolorpalette{Clarkson}{
    \definecolor{colorOne}{HTML}{004E42}
-   \definecolor{colorTwo}{HTML}{D7D2CB}   
+   \definecolor{colorTwo}{HTML}{D7D2CB}
    \definecolor{colorThree}{HTML}{FFCD00}
  }
- 
-% options: Default, Australia, Britain, Sweden, Spain, Russia, Denmark, Germany 
+
+% options: Default, Australia, Britain, Sweden, Spain, Russia, Denmark, Germany
 \usecolorstyle[colorPalette=Clarkson]{Germany} % try Spain for easy alternative
 
 \usetitlestyle{Filled}
@@ -84,14 +92,24 @@ allcolors=blue
 
          Math:
          \[
-           \int_0^t f(x(\tau))d\tau 
+           \int_0^t f(x(\tau))d\tau
          \]
 
          We can also put a graph in and refer to it here: Fig.~\ref{fig:first}
          \begin{tikzfigure}[This is a graph.]\label{fig:first}
            \includegraphics[width=0.5\linewidth]{figs/graph}
-         \end{tikzfigure} 
+         \end{tikzfigure}
 
+         \begin{tikzfigure}[We will have subfigures here]\label{fig:split}
+           \begin{subfigure}[b]{.48\linewidth}%
+             \includegraphics[width=\linewidth]{figs/graph}%
+             \caption{Left subfig}%
+           \end{subfigure}
+           \begin{subfigure}[b]{.48\linewidth}%
+             \includegraphics[width=\linewidth]{logos/clarkson-seal}%
+             \caption{Right subfig}%
+           \end{subfigure}
+         \end{tikzfigure}
        }
 
 
@@ -103,7 +121,7 @@ allcolors=blue
          \coloredbox{Important statement can be highlighted}
        }
 
-     
+
        \begin{subcolumns}
          \subcolumn{.5}
          \block{Type 1}{
@@ -117,7 +135,7 @@ allcolors=blue
        \end{subcolumns}
 
        \block{More}{
-         For more information, take a look at \texttt{tikzposter-example.tex} and \texttt{tikzposter-example.pdf} in this folder. 
+         For more information, take a look at \texttt{tikzposter-example.tex} and \texttt{tikzposter-example.pdf} in this folder.
        }
        \note[targetoffsetx=2in, angle=-45,targetoffsety=0in,connection]{Additionally, documentation for the poster class is in \url{https://ctan.org/pkg/tikzposter}.}
 
@@ -125,15 +143,8 @@ allcolors=blue
        \column{.33}
 
        \block{Results}{
-Most people get matrices wrong (overly complicated) in \LaTeX. This is the right way:
-\[ %this produces unenumerated equation.
-  \begin{bmatrix}
-    1 & 2y \\
-    \ast & 3x
-  \end{bmatrix}
-\]
 
-
+\begin{wrapfigure}{r}{0.3\linewidth} % wrapping the figure - in the code, figure should go before the text
 \begin{tikzfigure}[Title]
    \begin{tikzpicture}
      \begin{axis}[
@@ -143,15 +154,34 @@ Most people get matrices wrong (overly complicated) in \LaTeX. This is the right
        ylabel={$y$},
        axis lines=middle,
        axis line style=->,
-       width=.3\linewidth]
+       width=.9\linewidth]
         \addplot[no marks,blue,-,domain=0:6, samples=100] expression{sqrt(x)};
         \addlegendentry{$y=\sqrt{x}$};
       \end{axis}
    \end{tikzpicture}
  \end{tikzfigure}
+\end{wrapfigure}
+
+Most people get matrices wrong (overly complicated) in \LaTeX. This is the right way:
+\[ %this produces unenumerated equation.
+  \begin{bmatrix}
+    1 & 2y \\
+    \ast & 3x
+  \end{bmatrix}
+\]
+
+And now we will add some extra text, just to make the figure wrapping make sense.
+
+A little bit more, for good measure.
+
+         Math:
+         \[
+           \int_0^t f(x(\tau))d\tau
+         \]
+
 }
 
-       
+
        \block{References}{
          \printbibliography[heading=none]
        }
