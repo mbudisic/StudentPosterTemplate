@@ -38,6 +38,12 @@ allcolors=blue
 \usepackage{pgfplots}
 \pgfplotsset{compat=newest}
 
+\usetikzlibrary{calc} % relative positioning of nodes
+\usetikzlibrary{arrows.meta} % for arrow annotations
+\tikzstyle{arrow}+=[<-,line width=4pt, >={Latex[width=.2in,length=.2in]}, color=colorOne]
+\tikzstyle{bubble}+=[anchor=west,color=colorOne,right,text width=2in,fill=white, fill opacity=0.75, text opacity=1,draw]
+
+
 % choose one bibliography package:
 \usepackage[backend=bibtex,citestyle=numeric-comp]{biblatex}
 %\usepackage{amsrefs} % references
@@ -76,12 +82,8 @@ allcolors=blue
 
 
  \begin{columns}%blocks will be placed into columns
-
        \column{.33}
-
        \block{Title}{
-
-
          Math:
          \[
            \int_0^t f(x(\tau))d\tau 
@@ -91,19 +93,12 @@ allcolors=blue
          \begin{tikzfigure}[This is a graph.]\label{fig:first}
            \includegraphics[width=0.5\linewidth]{figs/graph}
          \end{tikzfigure} 
-
        }
-
-
        \column{.33}
-
        \block{Methods}{
          Something common.
-
          \coloredbox{Important statement can be highlighted}
        }
-
-     
        \begin{subcolumns}
          \subcolumn{.5}
          \block{Type 1}{
@@ -113,9 +108,7 @@ allcolors=blue
          \subcolumn{.5}
          \block{Type 2}{
            Something else}
-
        \end{subcolumns}
-
        \block{More}{
          For more information, take a look at \texttt{tikzposter-example.tex} and \texttt{tikzposter-example.pdf} in this folder. 
        }
@@ -134,6 +127,7 @@ Most people get matrices wrong (overly complicated) in \LaTeX. This is the right
 \]
 
 
+
 \begin{tikzfigure}[Title]
    \begin{tikzpicture}
      \begin{axis}[
@@ -149,14 +143,38 @@ Most people get matrices wrong (overly complicated) in \LaTeX. This is the right
       \end{axis}
    \end{tikzpicture}
  \end{tikzfigure}
+ 
+ On posters, adding annotations to graphs is a very effective way to communicate what is displayed AND at the same time reduce the amount of text. For more annotation examples, see the end of the document
+ 
+      \draw[arrow,->] (15,8) % head of arrow (notice the arrow symbol after \draw command)
+     -- node [text width=1.5in,midway,above,left] {Annotation 3}
+     +(45:8); % 45 degrees, length = 8
+
 }
 
-       
        \block{References}{
          \printbibliography[heading=none]
        }
 
      \end{columns}
+
+%% Annotations
+% default styles for "arrow" and "bubble" are defined just above "\begin{document}"
+% search for commands \tikzstyle
+%
+%  On posters, adding annotations to graphs is a very effective way to communicate 
+%  what is displayed AND at the same time reduce the amount of text. For more 
+%  annotation examples, see the end of the document
+
+     \draw[arrow,<->] (12,11) % tail of arrow
+     node[bubble] {Annotation 1} % annotation text
+     -- % line
+     +(-150:3); % tip of arrow: angle 135, length=2
+
+     \draw[arrow] (10,-16) %anchor point - experiment to see how the coordinates move
+     -- % line
+     +(45:3) % arrow leaves the anchor at 45 degrees and continues for 3 units
+     node[bubble, text width=3in] {Annotation Example: See end of LaTeX document}; % annotation text
 
 
 
