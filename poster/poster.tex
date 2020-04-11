@@ -52,13 +52,30 @@ allcolors=blue
 \addbibresource{bibliography.bib} % bibliography file
 
 % Title, Author, Institute
+\usetitlestyle{Envelope}
 \title{A most excellent research project}
 \author{First Author$^1$, Second Author$^2$}
 \institute{${}^1$ Clarkson, ${}^2$ Not Clarkson}
 
+
+% -- PREDEFINED THEMES ---------------------- %
+ % Choose LAYOUT:  Default, Basic, Rays, Simple, Envelope, Wave, Board, Autumn, Desert,
+ \usetheme{Autumn}
+
+ % colors based on Clarkson visual identity guide
+ % rotating colorOne/Two/Three and the countries below leads to various color themes
+ \definecolorpalette{Clarkson}{ 
+   \definecolor{colorOne}{HTML}{004E42}
+   \definecolor{colorTwo}{HTML}{D7D2CB}   
+   \definecolor{colorThree}{HTML}{FFCD00}
+ }
+ 
+% options: Default, Australia, Britain, Sweden, Spain, Russia, Denmark, Germany 
+\usecolorstyle[colorPalette=Clarkson]{Germany} % try Spain for easy alternative
+
+\usetitlestyle{Filled}
  \begin{document}
 
- %% header
  \maketitle
  \node[anchor=west] at (TP@title.west) {\hspace{3in}\includegraphics[height=3in]{logos/clarkson-seal.png}};
  \node[anchor=east] at (TP@title.east) {\includegraphics[height=2in]{logos/clarkson-logo.png} \hspace*{2in}};
@@ -69,21 +86,19 @@ allcolors=blue
        \block{Title}{
          Math:
          \[
-           \int_0^t f(x(\tau))d\tau
+           \int_0^t f(x(\tau))d\tau 
          \]
 
          We can also put a graph in and refer to it here: Fig.~\ref{fig:first}
          \begin{tikzfigure}[This is a graph.]\label{fig:first}
            \includegraphics[width=0.5\linewidth]{figs/graph}
-         \end{tikzfigure}
->>>>>>> e951377fb58b3ae03be2ae0eb17e50bab41e7ebc
+         \end{tikzfigure} 
        }
        \column{.33}
        \block{Methods}{
          Something common.
          \coloredbox{Important statement can be highlighted}
        }
->>>>>>> e951377fb58b3ae03be2ae0eb17e50bab41e7ebc
        \begin{subcolumns}
          \subcolumn{.5}
          \block{Type 1}{
@@ -95,7 +110,7 @@ allcolors=blue
            Something else}
        \end{subcolumns}
        \block{More}{
-         For more information, take a look at \texttt{tikzposter-example.tex} and \texttt{tikzposter-example.pdf} in this folder.
+         For more information, take a look at \texttt{tikzposter-example.tex} and \texttt{tikzposter-example.pdf} in this folder. 
        }
        \note[targetoffsetx=2in, angle=-45,targetoffsety=0in,connection]{Additionally, documentation for the poster class is in \url{https://ctan.org/pkg/tikzposter}.}
 
@@ -103,9 +118,16 @@ allcolors=blue
        \column{.33}
 
        \block{Results}{
+Most people get matrices wrong (overly complicated) in \LaTeX. This is the right way:
+\[ %this produces unenumerated equation.
+  \begin{bmatrix}
+    1 & 2y \\
+    \ast & 3x
+  \end{bmatrix}
+\]
 
 
->>>>>>> e951377fb58b3ae03be2ae0eb17e50bab41e7ebc
+
 \begin{tikzfigure}[Title]
    \begin{tikzpicture}
      \begin{axis}[
@@ -115,22 +137,21 @@ allcolors=blue
        ylabel={$y$},
        axis lines=middle,
        axis line style=->,
-       width=.9\linewidth]
+       width=.3\linewidth]
         \addplot[no marks,blue,-,domain=0:6, samples=100] expression{sqrt(x)};
         \addlegendentry{$y=\sqrt{x}$};
       \end{axis}
    \end{tikzpicture}
  \end{tikzfigure}
-
+ 
  On posters, adding annotations to graphs is a very effective way to communicate what is displayed AND at the same time reduce the amount of text. For more annotation examples, see the end of the document
-
+ 
       \draw[arrow,->] (15,8) % head of arrow (notice the arrow symbol after \draw command)
      -- node [text width=1.5in,midway,above,left] {Annotation 3}
      +(45:8); % 45 degrees, length = 8
 
 }
 
->>>>>>> e951377fb58b3ae03be2ae0eb17e50bab41e7ebc
        \block{References}{
          \printbibliography[heading=none]
        }
@@ -141,8 +162,8 @@ allcolors=blue
 % default styles for "arrow" and "bubble" are defined just above "\begin{document}"
 % search for commands \tikzstyle
 %
-%  On posters, adding annotations to graphs is a very effective way to communicate
-%  what is displayed AND at the same time reduce the amount of text. For more
+%  On posters, adding annotations to graphs is a very effective way to communicate 
+%  what is displayed AND at the same time reduce the amount of text. For more 
 %  annotation examples, see the end of the document
 
      \draw[arrow,<->] (12,11) % tail of arrow
