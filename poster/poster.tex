@@ -16,12 +16,8 @@
 
 
  \begin{columns}%blocks will be placed into columns
-
        \column{.33}
-
        \block{Title}{
-
-
          Math:
          \[
            \int_0^t f(x(\tau))d\tau
@@ -30,6 +26,7 @@
          We can also put a graph in and refer to it here: Fig.~\ref{fig:first}
          \begin{tikzfigure}[This is a graph.]\label{fig:first}
            \includegraphics[width=0.5\linewidth]{figs/graph}
+<<<<<<< HEAD
          \end{tikzfigure}
 
          \begin{tikzfigure}[We will have subfigures here]\label{fig:split}
@@ -42,18 +39,20 @@
              \caption{Right subfig}%
            \end{subfigure}
          \end{tikzfigure}
+=======
+         \end{tikzfigure}
+>>>>>>> origin/overleaf-2020-04-10-1042
        }
-
-
        \column{.33}
-
        \block{Methods}{
          Something common.
-
          \coloredbox{Important statement can be highlighted}
        }
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> origin/overleaf-2020-04-10-1042
        \begin{subcolumns}
          \subcolumn{.5}
          \block{Type 1}{
@@ -63,9 +62,7 @@
          \subcolumn{.5}
          \block{Type 2}{
            Something else}
-
        \end{subcolumns}
-
        \block{More}{
          For more information, take a look at \texttt{tikzposter-example.tex} and \texttt{tikzposter-example.pdf} in this folder.
        }
@@ -76,7 +73,11 @@
 
        \block{Results}{
 
+<<<<<<< HEAD
 \begin{wrapfigure}{r}{0.3\linewidth} % wrapping the figure - in the code, figure should go before the text
+=======
+
+>>>>>>> origin/overleaf-2020-04-10-1042
 \begin{tikzfigure}[Title]
    \begin{tikzpicture}
      \begin{axis}[
@@ -92,6 +93,7 @@
       \end{axis}
    \end{tikzpicture}
  \end{tikzfigure}
+<<<<<<< HEAD
 \end{wrapfigure}
 
 Most people get matrices wrong (overly complicated) in \LaTeX. This is the right way:
@@ -114,11 +116,40 @@ A little bit more, for good measure.
 }
 
 
+=======
+
+ On posters, adding annotations to graphs is a very effective way to communicate what is displayed AND at the same time reduce the amount of text. For more annotation examples, see the end of the document
+
+      \draw[arrow,->] (15,8) % head of arrow (notice the arrow symbol after \draw command)
+     -- node [text width=1.5in,midway,above,left] {Annotation 3}
+     +(45:8); % 45 degrees, length = 8
+
+}
+
+>>>>>>> origin/overleaf-2020-04-10-1042
        \block{References}{
          \printbibliography[heading=none]
        }
 
      \end{columns}
+
+%% Annotations
+% default styles for "arrow" and "bubble" are defined just above "\begin{document}"
+% search for commands \tikzstyle
+%
+%  On posters, adding annotations to graphs is a very effective way to communicate
+%  what is displayed AND at the same time reduce the amount of text. For more
+%  annotation examples, see the end of the document
+
+     \draw[arrow,<->] (12,11) % tail of arrow
+     node[bubble] {Annotation 1} % annotation text
+     -- % line
+     +(-150:3); % tip of arrow: angle 135, length=2
+
+     \draw[arrow] (10,-16) %anchor point - experiment to see how the coordinates move
+     -- % line
+     +(45:3) % arrow leaves the anchor at 45 degrees and continues for 3 units
+     node[bubble, text width=3in] {Annotation Example: See end of LaTeX document}; % annotation text
 
 
 
