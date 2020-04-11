@@ -76,5 +76,4 @@
  \let\oldmaketitle\maketitle
  \renewcommand{\maketitle}{\oldmaketitle
  \node[anchor=west] at (TP@title.west) {\hspace{1in}\includegraphics[height=3in]{logos/clarkson-seal.png}};
- \node[anchor=east] at (TP@title.east) {\includegraphics[height=2in]{logos/clarkson-logo.png} \hspace*{1in}};
  }
