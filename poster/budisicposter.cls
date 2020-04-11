@@ -51,3 +51,30 @@
 \RequirePackage[backend=bibtex,citestyle=numeric-comp]{biblatex}
 %\RequirePackage{amsrefs} % references
 %%%%
+
+% -- PREDEFINED THEMES ---------------------- %
+ % Choose LAYOUT:  Default, Basic, Rays, Simple, Envelope, Wave, Board, Autumn, Desert,
+\usetitlestyle{Envelope}
+
+\usetheme{Autumn}
+
+ % colors based on Clarkson visual identity guide
+ % rotating colorOne/Two/Three and the countries below leads to various color themes
+ \definecolorpalette{Clarkson}{
+   \definecolor{colorOne}{HTML}{004E42}
+   \definecolor{colorTwo}{HTML}{D7D2CB}
+   \definecolor{colorThree}{HTML}{FFCD00}
+ }
+
+ % options: Default, Australia, Britain, Sweden, Spain, Russia, Denmark,
+ \usecolorstyle[colorPalette=Clarkson]{Germany} % try Spain for easy Germany alternative
+
+ \usetitlestyle{Filled}
+
+ %% add logos to maketitle
+
+ \let\oldmaketitle\maketitle
+ \renewcommand{\maketitle}{\oldmaketitle
+ \node[anchor=west] at (TP@title.west) {\hspace{1in}\includegraphics[height=3in]{logos/clarkson-seal.png}};
+ \node[anchor=east] at (TP@title.east) {\includegraphics[height=2in]{logos/clarkson-logo.png} \hspace*{1in}};
+ }

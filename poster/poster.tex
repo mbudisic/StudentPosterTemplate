@@ -3,34 +3,14 @@
 \addbibresource{bibliography.bib} % bibliography file
 
 % Title, Author, Institute
-\usetitlestyle{Envelope}
 \title{A most excellent research project}
 \author{First Author$^1$, Second Author$^2$}
 \institute{${}^1$ Clarkson, ${}^2$ Not Clarkson}
 
 
-% -- PREDEFINED THEMES ---------------------- %
- % Choose LAYOUT:  Default, Basic, Rays, Simple, Envelope, Wave, Board, Autumn, Desert,
- \usetheme{Autumn}
-
- % colors based on Clarkson visual identity guide
- % rotating colorOne/Two/Three and the countries below leads to various color themes
- \definecolorpalette{Clarkson}{
-   \definecolor{colorOne}{HTML}{004E42}
-   \definecolor{colorTwo}{HTML}{D7D2CB}
-   \definecolor{colorThree}{HTML}{FFCD00}
- }
-
-% options: Default, Australia, Britain, Sweden, Spain, Russia, Denmark, Germany
-\usecolorstyle[colorPalette=Clarkson]{Germany} % try Spain for easy alternative
-
-\usetitlestyle{Filled}
  \begin{document}
 
- \maketitle
- \node[anchor=west] at (TP@title.west) {\hspace{3in}\includegraphics[height=3in]{logos/clarkson-seal.png}};
- \node[anchor=east] at (TP@title.east) {\includegraphics[height=2in]{logos/clarkson-logo.png} \hspace*{2in}};
-
+\maketitle
 
  \begin{columns}%blocks will be placed into columns
        \column{.33}
